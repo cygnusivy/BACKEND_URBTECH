@@ -1,12 +1,12 @@
 package com.urbtech.api.dto.request;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.With;
 
-@Getter
-@Setter
-public class ComunidadeDtoRequest {
+@Builder
+@With
+public record ComunidadeDtoRequest(
+        String nomeComunidade
 
-    private String nomeComunidade;
-
+){
 }

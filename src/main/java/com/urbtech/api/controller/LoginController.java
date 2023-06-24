@@ -30,11 +30,11 @@ public class LoginController {
     @ResponseStatus(HttpStatus.CREATED)
     public LoginDtoResponse logar(@Valid @RequestBody LoginDtoRequest loginDtoRequest){
 
-        LoginModel loginModel = loginService.logar(loginDtoRequest.getEmail(), loginDtoRequest.getSenha());
+        LoginModel loginModel = loginService.logar(loginDtoRequest.email(), loginDtoRequest.senha());
         LoginDtoResponse loginDtoResponse = loginMapper.loginModelToDto(loginModel);
 
         Optional<UserModel> userRegistrationModel = userRepository.findByEmail(loginModel.getEmail());
-        loginDtoResponse.setIdUser(userRegistrationModel.get().getId());
+        loginDtoResponse.withIdUser(userRegistrationModel.get().getId());
 
         return loginDtoResponse;
 

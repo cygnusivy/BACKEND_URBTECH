@@ -55,8 +55,8 @@ public class UserController {
     @GetMapping("retornaUrlFotoPerfil/{id}")
     public ImgPerfil getUrlFotoPerfil(@Valid @PathVariable Long id){
         UserModel userModel = this.userService.buscaUsuarioPeloId(id);
-        ImgPerfil imgPerfil = new ImgPerfil();
-        imgPerfil.setUrlFotoPerfil(userModel.getImgUrl());
+        ImgPerfil imgPerfil = new ImgPerfil(userModel.getImgUrl());
+
         return imgPerfil;
     }
 
@@ -65,8 +65,8 @@ public class UserController {
 
         Optional<UserModel> userModel = Optional.ofNullable(this.userService.buscaUsuarioPeloId(id));
 
-        if (user.getImgUrl() == null){
-            user.setImgUrl(userModel.get().getImgUrl());
+        if (user.imgUrl() == null){
+            user.withImgUrl(userModel.get().getImgUrl());
         }
 
         Optional<UserModel> userModel1 = Optional.ofNullable(userMapper.userRequestToModel(user));

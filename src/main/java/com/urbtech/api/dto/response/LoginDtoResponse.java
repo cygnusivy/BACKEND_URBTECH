@@ -1,24 +1,25 @@
 package com.urbtech.api.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
+import lombok.Builder;
 import lombok.Setter;
+import lombok.With;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-public class LoginDtoResponse {
+@Builder
+@With
+public record LoginDtoResponse(
+        String email,
 
-    private String email;
+        @JsonIgnore
+        String senha,
 
-    @JsonIgnore
-    private String senha;
+        String indLoginSucesso,
 
-    private String indLoginSucesso;
+        LocalDate loginDate,
 
-    private LocalDate loginDate;
+        Long idUser
 
-    private Long idUser;
-
+){
 }

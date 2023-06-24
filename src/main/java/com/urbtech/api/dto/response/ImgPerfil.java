@@ -1,12 +1,12 @@
 package com.urbtech.api.dto.response;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.With;
 
-@Getter
-@Setter
-public class ImgPerfil {
+@Builder
+@With
+public record ImgPerfil(
+        String urlFotoPerfil
 
-    private String urlFotoPerfil;
-
+){
 }

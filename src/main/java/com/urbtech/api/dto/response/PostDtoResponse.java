@@ -1,26 +1,26 @@
 package com.urbtech.api.dto.response;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.With;
 
 import java.util.List;
 
-@Getter
-@Setter
-public class PostDtoResponse {
+@Builder
+@With
+public record PostDtoResponse(
+        Long id,
 
-    private Long id;
+        String nomeUsuario,
 
-    private String nomeUsuario;
+        String imgUrlUsuario,
 
-    private String imgUrlUsuario;
+        String imgUrl,
 
-    private String imgUrl;
+        String descricao,
 
-    private String descricao;
+        Long qtdCurtidas,
 
-    private Long qtdCurtidas;
+        List<ComentarioResponse> listaComentario
 
-    private List<ComentarioResponse> listaComentario;
-
+){
 }

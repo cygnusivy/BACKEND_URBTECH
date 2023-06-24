@@ -1,16 +1,16 @@
 package com.urbtech.api.dto.request;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.With;
 
-@Getter
-@Setter
-public class PostDtoRequest {
+@Builder
+@With
+public record PostDtoRequest(
+        String imgUrl,
 
-    private String imgUrl;
+        Long idUsuario,
 
-    private Long idUsuario;
+        String descricao
 
-    private String descricao;
-
+){
 }

@@ -1,14 +1,13 @@
 package com.urbtech.api.dto.request;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.With;
 
-@Getter
-@Setter
-public class LoginDtoRequest {
+@Builder
+@With
+public record LoginDtoRequest(
+        String email,
+        String senha
 
-    private String email;
-
-    private String senha;
-
+){
 }

@@ -43,13 +43,13 @@ public class UserService {
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        validaSenha(userDtoRequest.getSenha(), userDtoRequest.getSenha2());
+        validaSenha(userDtoRequest.senha(), userDtoRequest.senha2());
 
-        String senhaCriptografada1 = encoder.encode(userDtoRequest.getSenha());
+        String senhaCriptografada1 = encoder.encode(userDtoRequest.senha());
 
         UserModel userModel = new UserModel();
-        userModel.setNome(userDtoRequest.getNome());
-        userModel.setEmail(userDtoRequest.getEmail());
+        userModel.setNome(userDtoRequest.nome());
+        userModel.setEmail(userDtoRequest.email());
 
         userModel.setSenha(senhaCriptografada1);
         userModel.setDataAberturaConta(LocalDate.now());

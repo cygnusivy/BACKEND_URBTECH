@@ -1,16 +1,16 @@
 package com.urbtech.api.dto.request;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.With;
 
-@Getter
-@Setter
-public class ComentarioDtoRequest {
+@Builder
+@With
+public record ComentarioDtoRequest(
+        Long idPost,
 
-    private Long idPost;
+        Long idUsuarioComentario,
 
-    private Long idUsuarioComentario;
+        String comentario
 
-    private String comentario;
-
+){
 }

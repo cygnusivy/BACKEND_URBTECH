@@ -35,7 +35,7 @@ public class PostService {
     public PostDtoRequest postar(PostDtoRequest postDtoRequest){
         PostModel postModel = postMapper.dtoToEntity(postDtoRequest);
 
-        if (this.userService.validaContaComIdUsuario(postDtoRequest.getIdUsuario()) == null){
+        if (this.userService.validaContaComIdUsuario(postDtoRequest.idUsuario()) == null){
             throw new BusinessException("Usuário não cadastrado.");
         }
 
@@ -69,9 +69,9 @@ public class PostService {
         UserModel userModel = this.userService.buscaUsuarioPeloId(postModel.get().getId());
 
         PostDtoResponse postDtoResponse = this.postMapper.entityToRequest(postModel.get());
-        postDtoResponse.setNomeUsuario(userModel.getNome());
-        postDtoResponse.setImgUrlUsuario(userModel.getImgUrl());
-        postDtoResponse.setListaComentario(this.comentarioService.comentarioResponseList(id));
+        postDtoResponse.withNomeUsuario(userModel.getNome());
+        postDtoResponse.withImgUrlUsuario(userModel.getImgUrl());
+        postDtoResponse.withListaComentario(this.comentarioService.comentarioResponseList(id));
 
         return postDtoResponse;
     }
@@ -92,9 +92,9 @@ public class PostService {
         for (PostModel postModel : postModelList){
 
             PostDtoResponse postDtoResponse = this.postMapper.entityToRequest(postModel);
-            postDtoResponse.setNomeUsuario(userModel.getNome());
-            postDtoResponse.setImgUrlUsuario(userModel.getImgUrl());
-            postDtoResponse.setListaComentario(this.comentarioService.comentarioResponseList(postModel.getId()));
+            postDtoResponse.withNomeUsuario(userModel.getNome());
+            postDtoResponse.withImgUrlUsuario(userModel.getImgUrl());
+            postDtoResponse.withListaComentario(this.comentarioService.comentarioResponseList(postModel.getId()));
 
             postDtoResponseList.add(postDtoResponse);
 

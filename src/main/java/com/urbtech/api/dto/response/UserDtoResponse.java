@@ -1,28 +1,29 @@
 package com.urbtech.api.dto.response;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.With;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-public class UserDtoResponse {
+@Builder
+@With
+public record UserDtoResponse(
+        Long id,
 
-    private Long id;
+        String nome,
 
-    private String nome;
+        String email,
 
-    private String email;
+        String imgUrl,
 
-    private String imgUrl;
+        String descricao,
 
-    private String descricao;
+        String localizacao,
 
-    private String localizacao;
+        String site,
+        LocalDate nascimento
 
-    private String site;
-
-    private LocalDate nascimento;
-
+){
 }

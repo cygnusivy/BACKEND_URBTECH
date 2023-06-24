@@ -29,11 +29,11 @@ public class ComunidadeService {
 
     @Transactional
     public ComunidadeModel salvar(ComunidadeDtoRequest comunidadeDtoRequest){
-        if (this.comunidadeRepository.existsByNomeComunidade(comunidadeDtoRequest.getNomeComunidade())){
+        if (this.comunidadeRepository.existsByNomeComunidade(comunidadeDtoRequest.nomeComunidade())){
             throw new BusinessException("Já exixte uma comunidade com mesmo nome.");
         }
         ComunidadeModel comunidadeModel = new ComunidadeModel();
-        comunidadeModel.setNomeComunidade(comunidadeDtoRequest.getNomeComunidade());
+        comunidadeModel.setNomeComunidade(comunidadeDtoRequest.nomeComunidade());
         comunidadeModel.setDataCriacaoComunidade(LocalDateTime.now());
 
         return this.comunidadeRepository.save(comunidadeModel);

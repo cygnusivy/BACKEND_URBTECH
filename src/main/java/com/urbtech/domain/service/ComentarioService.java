@@ -26,9 +26,9 @@ public class ComentarioService {
 
     @Transactional
     public ComentarioResponse comentar(ComentarioDtoRequest comentarioDtoRequest){
-        this.userService.validaContaComIdUsuario(comentarioDtoRequest.getIdUsuarioComentario());
+        this.userService.validaContaComIdUsuario(comentarioDtoRequest.idUsuarioComentario());
 
-        UserModel userModelComentario = this.userService.buscaUsuarioPeloId(comentarioDtoRequest.getIdUsuarioComentario());
+        UserModel userModelComentario = this.userService.buscaUsuarioPeloId(comentarioDtoRequest.idUsuarioComentario());
 
         ComentarioModel comentarioModel = comentarioMapper.dtoToModel(comentarioDtoRequest);
         comentarioModel.setHorarioPublicacao(LocalDateTime.now());
@@ -36,8 +36,8 @@ public class ComentarioService {
         this.comentarioRepository.save(comentarioModel);
 
         ComentarioResponse comentarioResponse = comentarioMapper.modelToRequest(comentarioModel);
-        comentarioResponse.setNomeUsuarioComentario(userModelComentario.getNome());
-        comentarioResponse.setImgUrlUsuarioComentario(userModelComentario.getImgUrl());
+        comentarioResponse.withNomeUsuarioComentario(userModelComentario.getNome());
+        comentarioResponse.withImgUrlUsuarioComentario(userModelComentario.getImgUrl());
 
         return comentarioResponse;
     }
@@ -50,10 +50,10 @@ public class ComentarioService {
         for (ComentarioModel comentarioModel : comentarioModelList){
 
             ComentarioResponse comentarioResponse = this.comentarioMapper.modelToRequest(comentarioModel);
-            UserModel userComentario = this.userService.buscaUsuarioPeloId(comentarioResponse.getIdUsuarioComentario());
+            UserModel userComentario = this.userService.buscaUsuarioPeloId(comentarioResponse.idUsuarioComentario());
 
-            comentarioResponse.setImgUrlUsuarioComentario(userComentario.getImgUrl());
-            comentarioResponse.setNomeUsuarioComentario(userComentario.getNome());
+            comentarioResponse.withImgUrlUsuarioComentario(userComentario.getImgUrl());
+            comentarioResponse.withNomeUsuarioComentario(userComentario.getNome());
 
             comentarioResponseList.add(comentarioResponse);
         }

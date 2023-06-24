@@ -1,26 +1,26 @@
 package com.urbtech.api.dto.response;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.With;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-public class ComentarioResponse {
+@Builder
+@With
+public record ComentarioResponse(
+        Long id,
 
-    private Long id;
+        Long idPost,
 
-    private Long idPost;
+        Long idUsuarioComentario,
 
-    private Long idUsuarioComentario;
+        String nomeUsuarioComentario,
 
-    private String nomeUsuarioComentario;
+        String imgUrlUsuarioComentario,
 
-    private String imgUrlUsuarioComentario;
+        String comentario,
 
-    private String comentario;
+        LocalDateTime horarioPublicacao
 
-    private LocalDateTime horarioPublicacao;
-
+){
 }
